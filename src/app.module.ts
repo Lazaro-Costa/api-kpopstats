@@ -5,9 +5,16 @@ import { ConfigModule } from '@nestjs/config';
 import { IdolsModule } from './idols/idols.module';
 import { CompanysModule } from './companys/companys.module';
 import { GroupsModule } from './groups/groups.module';
+import { PicsModule } from './pics/pics.module';
 
 @Module({
-  imports: [ConfigModule.forRoot(), IdolsModule, CompanysModule, GroupsModule],
+  imports: [
+    ConfigModule.forRoot(),
+    IdolsModule,
+    CompanysModule,
+    GroupsModule,
+    PicsModule,
+  ],
   controllers: [AppController],
   providers: [AppService],
 })
