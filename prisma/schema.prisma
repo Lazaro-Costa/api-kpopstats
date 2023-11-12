@@ -76,12 +76,12 @@ model Pic {
   createdAt DateTime @default(now())
   name      String   @unique
 
-  profile Profile[]
-  banner  Banner[]
-
   Company Company[]
   Idol    Idol[]
   Group   Group[]
+
+  profiles Profile[]
+  banners  Banner[]
 
   @@map("pics")
 }
@@ -90,8 +90,9 @@ model Profile {
   id        Int      @id @default(autoincrement())
   createdAt DateTime @default(now())
   url       String
-  Pic       Pic?     @relation(fields: [picId], references: [id])
-  picId     Int?
+
+  Pic   Pic @relation(fields: [picId], references: [id])
+  picId Int
 
   @@map("profiles")
 }
@@ -100,8 +101,9 @@ model Banner {
   id        Int      @id @default(autoincrement())
   createdAt DateTime @default(now())
   url       String
-  Pic       Pic?     @relation(fields: [picId], references: [id])
-  picId     Int?
+
+  Pic   Pic @relation(fields: [picId], references: [id])
+  picId Int
 
   @@map("banners")
 }
