@@ -1,27 +1,61 @@
 import { PrismaService } from 'src/prisma/prisma.service';
 import { CreateIdolDto } from '../dto/create-idol.dto';
 import { UpdateIdolDto } from '../dto/update-idol.dto';
+import { Injectable } from '@nestjs/common';
 
+@Injectable()
 export class IdolsRepository {
   constructor(private readonly prisma: PrismaService) {}
 
-  create(createIdolDto: CreateIdolDto) {
-    return 'This action adds a new idol';
+  async create(createIdolDto: CreateIdolDto) {
+    return this.prisma.idol.create({
+      data: createIdolDto,
+      include: {
+        company: {
+          select: {
+            id: true,
+            name: true,
+          },
+        },
+        group: true,
+      },
+    });
   }
 
-  findAll() {
-    return `This action returns all idols`;
+  async findAll() {
+    return this.prisma.idol.findMany();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} idol`;
+  async findOne(id: number) {
+    return this.prisma.idol.findUnique({
+      where: {
+        id,
+      },
+      include: {
+        company: true,
+        group: true,
+      },
+    });
   }
 
-  update(id: number, updateIdolDto: UpdateIdolDto) {
-    return `This action updates a #${id} idol`;
+  async update(id: number, updateIdolDto: UpdateIdolDto) {
+    return this.prisma.idol.update({
+      where: {
+        id,
+      },
+      data: updateIdolDto,
+      include: {
+        company: true,
+        group: true,
+      },
+    });
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} idol`;
+  async remove(id: number) {
+    return this.prisma.idol.delete({
+      where: {
+        id,
+      },
+    });
   }
 }
