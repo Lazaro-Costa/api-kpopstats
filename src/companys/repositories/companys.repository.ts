@@ -14,13 +14,64 @@ export class CompanysRepository {
   }
 
   async findAll() {
-    return this.prisma.company.findMany();
+    return this.prisma.company.findMany({
+      include: {
+        groups: {
+          select: {
+            id: true,
+            name: true,
+            idols: {
+              select: {
+                id: true,
+                name: true,
+              },
+            },
+          },
+        },
+        idols: {
+          where: {
+            solist: {
+              not: false,
+            },
+          },
+          select: {
+            id: true,
+            name: true,
+          },
+        },
+      },
+    });
   }
 
   async findOne(id: number) {
     return this.prisma.company.findUnique({
       where: {
         id,
+      },
+      include: {
+        groups: {
+          select: {
+            id: true,
+            name: true,
+            idols: {
+              select: {
+                id: true,
+                name: true,
+              },
+            },
+          },
+        },
+        idols: {
+          where: {
+            solist: {
+              not: false,
+            },
+          },
+          select: {
+            id: true,
+            name: true,
+          },
+        },
       },
     });
   }
@@ -30,9 +81,7 @@ export class CompanysRepository {
       where: {
         id,
       },
-      data: {
-        ...updateCompanyDto,
-      },
+      data: updateCompanyDto,
     });
   }
 

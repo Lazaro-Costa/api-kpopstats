@@ -17,13 +17,33 @@ export class IdolsRepository {
             name: true,
           },
         },
-        group: true,
+        group: {
+          select: {
+            id: true,
+            name: true,
+          },
+        },
       },
     });
   }
 
   async findAll() {
-    return this.prisma.idol.findMany();
+    return this.prisma.idol.findMany({
+      include: {
+        company: {
+          select: {
+            id: true,
+            name: true,
+          },
+        },
+        group: {
+          select: {
+            id: true,
+            name: true,
+          },
+        },
+      },
+    });
   }
 
   async findOne(id: number) {
@@ -32,8 +52,18 @@ export class IdolsRepository {
         id,
       },
       include: {
-        company: true,
-        group: true,
+        company: {
+          select: {
+            id: true,
+            name: true,
+          },
+        },
+        group: {
+          select: {
+            id: true,
+            name: true,
+          },
+        },
       },
     });
   }
@@ -44,10 +74,6 @@ export class IdolsRepository {
         id,
       },
       data: updateIdolDto,
-      include: {
-        company: true,
-        group: true,
-      },
     });
   }
 
