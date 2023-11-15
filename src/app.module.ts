@@ -6,6 +6,7 @@ import { IdolsModule } from './idols/idols.module';
 import { CompanysModule } from './companys/companys.module';
 import { GroupsModule } from './groups/groups.module';
 import { PicsModule } from './pics/pics.module';
+import { ProfilesModule } from './profiles/profiles.module';
 
 @Module({
   imports: [
@@ -14,6 +15,7 @@ import { PicsModule } from './pics/pics.module';
     CompanysModule,
     GroupsModule,
     PicsModule,
+    ProfilesModule,
   ],
   controllers: [AppController],
   providers: [AppService],
