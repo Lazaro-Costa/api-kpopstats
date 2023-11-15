@@ -7,6 +7,7 @@ import { CompanysModule } from './companys/companys.module';
 import { GroupsModule } from './groups/groups.module';
 import { PicsModule } from './pics/pics.module';
 import { ProfilesModule } from './profiles/profiles.module';
+import { BannersModule } from './banners/banners.module';
 
 @Module({
   imports: [
@@ -16,6 +17,7 @@ import { ProfilesModule } from './profiles/profiles.module';
     GroupsModule,
     PicsModule,
     ProfilesModule,
+    BannersModule,
   ],
   controllers: [AppController],
   providers: [AppService],
