@@ -1,26 +1,31 @@
 import { Injectable } from '@nestjs/common';
 import { CreateBannerDto } from './dto/create-banner.dto';
 import { UpdateBannerDto } from './dto/update-banner.dto';
+import { BannersRepository } from './repositories/banners.repository';
 
 @Injectable()
 export class BannersService {
+  constructor(private readonly repository: BannersRepository) {}
   create(createBannerDto: CreateBannerDto) {
-    return 'This action adds a new banner';
+    return this.repository.create(createBannerDto);
   }
 
   findAll() {
-    return `This action returns all banners`;
+    return this.repository.findAll();
+  }
+  findAll_Entity(entity: string) {
+    return this.repository.findAll_Entity(entity);
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} banner`;
+    return this.repository.findOne(id);
   }
 
   update(id: number, updateBannerDto: UpdateBannerDto) {
-    return `This action updates a #${id} banner`;
+    return this.repository.update(id, updateBannerDto);
   }
 
   remove(id: number) {
-    return `This action removes a #${id} banner`;
+    return this.repository.remove(id);
   }
 }

@@ -1,4 +1,12 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+} from '@nestjs/common';
 import { BannersService } from './banners.service';
 import { CreateBannerDto } from './dto/create-banner.dto';
 import { UpdateBannerDto } from './dto/update-banner.dto';
@@ -15,6 +23,10 @@ export class BannersController {
   @Get()
   findAll() {
     return this.bannersService.findAll();
+  }
+  @Get(':entity')
+  findAll_Entity(@Param('entity') entity: string) {
+    return this.bannersService.findAll_Entity(entity);
   }
 
   @Get(':id')
