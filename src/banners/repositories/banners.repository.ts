@@ -77,4 +77,13 @@ export class BannersRepository {
       where: { id },
     });
   }
+  async removeMany(ids: number[]) {
+    return this.prisma.banner.deleteMany({
+      where: {
+        id: {
+          in: ids,
+        },
+      },
+    });
+  }
 }
