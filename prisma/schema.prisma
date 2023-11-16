@@ -13,6 +13,7 @@ datasource db {
 model Company {
   id            Int       @id @default(autoincrement())
   createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @default(now()) @updatedAt
   name          String
   founding_date DateTime?
   headquarters  String?
@@ -30,8 +31,10 @@ model Company {
 }
 
 model Idol {
-  id           Int       @id @default(autoincrement())
-  createdAt    DateTime  @default(now())
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
+
   name         String
   korean_name  String?
   foreign_name String?
@@ -53,8 +56,10 @@ model Idol {
 }
 
 model Group {
-  id          Int       @id @default(autoincrement())
-  createdAt   DateTime  @default(now())
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
+
   name        String
   fandom_name String?
   debut_date  DateTime?
@@ -74,6 +79,7 @@ model Group {
 model Pic {
   id        Int      @id @default(autoincrement())
   createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
   name      String   @unique
 
   Company Company[]
@@ -89,6 +95,7 @@ model Pic {
 model Profile {
   id        Int      @id @default(autoincrement())
   createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
   url       String
 
   Pic   Pic @relation(fields: [picId], references: [id])
@@ -100,6 +107,7 @@ model Profile {
 model Banner {
   id        Int      @id @default(autoincrement())
   createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
   url       String
 
   Pic   Pic @relation(fields: [picId], references: [id])

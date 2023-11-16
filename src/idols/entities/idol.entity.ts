@@ -3,6 +3,7 @@ import { Idol } from '@prisma/client';
 export class IdolEntity implements Idol {
   id: number;
   createdAt: Date;
+  updatedAt: Date;
   name: string;
   korean_name: string;
   foreign_name: string;
