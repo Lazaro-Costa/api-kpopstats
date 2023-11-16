@@ -83,7 +83,15 @@ export class PicsRepository {
       where: {
         id,
       },
-      data: updatePicDto,
+      data: {
+        name: updatePicDto.name,
+        profiles: {
+          create: updatePicDto.urls_profile?.map(url => ({ url })),
+        },
+        banners: {
+          create: updatePicDto.urls_banner?.map(url => ({ url })),
+        },
+      },
     });
   }
 

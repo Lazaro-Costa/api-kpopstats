@@ -95,4 +95,13 @@ export class ProfilesRepository {
       },
     });
   }
+  async removeMany(ids: number[]) {
+    return this.prisma.profile.deleteMany({
+      where: {
+        id: {
+          in: ids,
+        },
+      },
+    });
+  }
 }

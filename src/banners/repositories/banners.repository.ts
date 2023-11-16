@@ -28,7 +28,6 @@ export class BannersRepository {
 
   async findAll_Entity(entity: string) {
     const groupsWithPictures = await this.prisma[entity].findMany({
-      //falta testar se isso funciona
       include: {
         pictures: {
           include: {

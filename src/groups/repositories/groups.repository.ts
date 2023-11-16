@@ -16,12 +16,6 @@ export class GroupsRepository {
             name: true,
           },
         },
-        idols: {
-          select: {
-            id: true,
-            name: true,
-          },
-        },
       },
     });
   }
