@@ -11,12 +11,13 @@ import { BannersModule } from './banners/banners.module';
 
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
+import { HomeController } from './home/home.controller';
 @Module({
   imports: [
     ConfigModule.forRoot(),
     ServeStaticModule.forRoot({
-      rootPath: join(__dirname, '..', 'public'), // Caminho para os arquivos estáticos, se aplicável
-      serveRoot: '/static', // Rota para os arquivos estáticos, se aplicável
+      rootPath: join(__dirname, '..', '/public/assets'), // Caminho para os arquivos estáticos
+      serveRoot: '/assets', // Rota para os arquivos estáticos
     }),
     IdolsModule,
     CompanysModule,
@@ -25,7 +26,7 @@ import { join } from 'path';
     ProfilesModule,
     BannersModule,
   ],
-  controllers: [AppController],
+  controllers: [AppController, HomeController],
   providers: [AppService],
 })
 export class AppModule {}
