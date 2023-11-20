@@ -26,7 +26,13 @@ export class ProfilesService {
     return this.repository.update(id, updateProfileDto);
   }
 
-  remove(id: number) {
-    return this.repository.remove(id);
+  remove(id: string) {
+    const idsArray = id.split('-').map(Number);
+
+    if (idsArray.length > 1) {
+      return this.repository.removeMany(idsArray);
+    } else {
+      return this.repository.remove(+id);
+    }
   }
 }

@@ -41,6 +41,6 @@ export class ProfilesController {
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.profilesService.remove(+id);
+    return this.profilesService.remove(id);
   }
 }
