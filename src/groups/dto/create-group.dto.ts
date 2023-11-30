@@ -1,10 +1,4 @@
-import {
-  IsDate,
-  IsNotEmpty,
-  IsNumber,
-  IsOptional,
-  IsString,
-} from 'class-validator';
+import { IsNotEmpty, IsNumber, IsOptional, IsString } from 'class-validator';
 
 export class CreateGroupDto {
   @IsString()
@@ -15,7 +9,6 @@ export class CreateGroupDto {
   @IsOptional()
   fandom_name?: string;
 
-  @IsDate()
   @IsOptional()
   debut_date?: Date;
 
