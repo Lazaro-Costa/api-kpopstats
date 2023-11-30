@@ -10,8 +10,8 @@ export class GroupsService {
     return this.repository.create(createGroupDto);
   }
 
-  findAll() {
-    return this.repository.findAll();
+  findAll(page: number) {
+    return this.repository.findAll(page);
   }
 
   findOne(id: number) {

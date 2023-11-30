@@ -20,19 +20,52 @@ export class GroupsRepository {
     });
   }
 
-  async findAll() {
+  async findAll(page: number) {
+    const itemsPerPage = 2;
+    const skip = (page - 1) * itemsPerPage;
+
     return this.prisma.group.findMany({
+      skip,
+      take: itemsPerPage,
       include: {
-        company: {
+        pictures: {
           select: {
             id: true,
             name: true,
+            banners: {
+              select: {
+                id: true,
+                url: true,
+              },
+            },
+            profiles: {
+              select: {
+                id: true,
+                url: true,
+              },
+            },
           },
         },
         idols: {
-          select: {
-            id: true,
-            name: true,
+          include: {
+            pictures: {
+              select: {
+                id: true,
+                name: true,
+                banners: {
+                  select: {
+                    id: true,
+                    url: true,
+                  },
+                },
+                profiles: {
+                  select: {
+                    id: true,
+                    url: true,
+                  },
+                },
+              },
+            },
           },
         },
       },
