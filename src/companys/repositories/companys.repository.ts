@@ -13,8 +13,13 @@ export class CompanysRepository {
     });
   }
 
-  async findAll() {
+  async findAll(page: number) {
+    const itemsPerPage = 3;
+    const skip = (page - 1) * itemsPerPage;
+
     return this.prisma.company.findMany({
+      skip,
+      take: itemsPerPage,
       include: {
         groups: {
           select: {

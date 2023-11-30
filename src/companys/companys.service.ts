@@ -10,8 +10,8 @@ export class CompanysService {
     return this.repository.create(createCompanyDto);
   }
 
-  findAll() {
-    return this.repository.findAll();
+  async findAll(page: number) {
+    return this.repository.findAll(page);
   }
 
   findOne(id: number) {
