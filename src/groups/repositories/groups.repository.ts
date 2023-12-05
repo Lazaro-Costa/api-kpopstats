@@ -21,7 +21,7 @@ export class GroupsRepository {
   }
 
   async findAll(page: number) {
-    const itemsPerPage = 2;
+    const itemsPerPage = 10;
     const skip = (page - 1) * itemsPerPage;
 
     return this.prisma.group.findMany({
@@ -44,6 +44,12 @@ export class GroupsRepository {
                 url: true,
               },
             },
+          },
+        },
+        company: {
+          select: {
+            id: true,
+            name: true,
           },
         },
         idols: {
@@ -84,10 +90,44 @@ export class GroupsRepository {
             name: true,
           },
         },
-        idols: {
+        pictures: {
           select: {
             id: true,
             name: true,
+            banners: {
+              select: {
+                id: true,
+                url: true,
+              },
+            },
+            profiles: {
+              select: {
+                id: true,
+                url: true,
+              },
+            },
+          },
+        },
+        idols: {
+          include: {
+            pictures: {
+              select: {
+                id: true,
+                name: true,
+                banners: {
+                  select: {
+                    id: true,
+                    url: true,
+                  },
+                },
+                profiles: {
+                  select: {
+                    id: true,
+                    url: true,
+                  },
+                },
+              },
+            },
           },
         },
       },

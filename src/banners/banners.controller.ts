@@ -24,7 +24,7 @@ export class BannersController {
   findAll() {
     return this.bannersService.findAll();
   }
-  @Get(':entity')
+  @Get('/entity/:entity')
   findAll_Entity(@Param('entity') entity: string) {
     return this.bannersService.findAll_Entity(entity);
   }

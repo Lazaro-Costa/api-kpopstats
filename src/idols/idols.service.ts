@@ -9,8 +9,8 @@ export class IdolsService {
   create(createIdolDto: CreateIdolDto) {
     return this.repository.create(createIdolDto);
   }
-  findAll() {
-    return this.repository.findAll();
+  findAll(page: number) {
+    return this.repository.findAll(page);
   }
 
   findOne(id: number) {
