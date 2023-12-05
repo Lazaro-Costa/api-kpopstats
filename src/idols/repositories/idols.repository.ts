@@ -27,8 +27,12 @@ export class IdolsRepository {
     });
   }
 
-  async findAll() {
+  async findAll(page: number) {
+    const itemsPerPage = 10;
+    const skip = (page - 1) * itemsPerPage;
     return this.prisma.idol.findMany({
+      skip,
+      take: itemsPerPage,
       include: {
         company: {
           select: {
@@ -62,6 +66,24 @@ export class IdolsRepository {
           select: {
             id: true,
             name: true,
+          },
+        },
+        pictures: {
+          select: {
+            id: true,
+            name: true,
+            banners: {
+              select: {
+                id: true,
+                url: true,
+              },
+            },
+            profiles: {
+              select: {
+                id: true,
+                url: true,
+              },
+            },
           },
         },
       },

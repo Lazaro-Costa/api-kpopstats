@@ -1,17 +1,10 @@
-import {
-  IsDate,
-  IsNotEmpty,
-  IsNumber,
-  IsOptional,
-  IsString,
-} from 'class-validator';
+import { IsNotEmpty, IsNumber, IsOptional, IsString } from 'class-validator';
 
 export class CreateCompanyDto {
   @IsString()
   @IsNotEmpty()
   name: string;
 
-  @IsDate()
   @IsOptional()
   founding_date?: Date;
 

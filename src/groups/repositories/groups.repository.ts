@@ -20,9 +20,32 @@ export class GroupsRepository {
     });
   }
 
-  async findAll() {
+  async findAll(page: number) {
+    const itemsPerPage = 10;
+    const skip = (page - 1) * itemsPerPage;
+
     return this.prisma.group.findMany({
+      skip,
+      take: itemsPerPage,
       include: {
+        pictures: {
+          select: {
+            id: true,
+            name: true,
+            banners: {
+              select: {
+                id: true,
+                url: true,
+              },
+            },
+            profiles: {
+              select: {
+                id: true,
+                url: true,
+              },
+            },
+          },
+        },
         company: {
           select: {
             id: true,
@@ -30,9 +53,25 @@ export class GroupsRepository {
           },
         },
         idols: {
-          select: {
-            id: true,
-            name: true,
+          include: {
+            pictures: {
+              select: {
+                id: true,
+                name: true,
+                banners: {
+                  select: {
+                    id: true,
+                    url: true,
+                  },
+                },
+                profiles: {
+                  select: {
+                    id: true,
+                    url: true,
+                  },
+                },
+              },
+            },
           },
         },
       },
@@ -51,10 +90,44 @@ export class GroupsRepository {
             name: true,
           },
         },
-        idols: {
+        pictures: {
           select: {
             id: true,
             name: true,
+            banners: {
+              select: {
+                id: true,
+                url: true,
+              },
+            },
+            profiles: {
+              select: {
+                id: true,
+                url: true,
+              },
+            },
+          },
+        },
+        idols: {
+          include: {
+            pictures: {
+              select: {
+                id: true,
+                name: true,
+                banners: {
+                  select: {
+                    id: true,
+                    url: true,
+                  },
+                },
+                profiles: {
+                  select: {
+                    id: true,
+                    url: true,
+                  },
+                },
+              },
+            },
           },
         },
       },

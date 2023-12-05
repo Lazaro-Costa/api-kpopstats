@@ -1,6 +1,5 @@
 import {
   IsBoolean,
-  IsDate,
   IsNotEmpty,
   IsNumber,
   IsOptional,
@@ -24,7 +23,6 @@ export class CreateIdolDto {
   @IsOptional()
   nationality?: string;
 
-  @IsDate()
   @IsOptional()
   date_birth?: Date;
 

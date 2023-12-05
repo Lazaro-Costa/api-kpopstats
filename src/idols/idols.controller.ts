@@ -1,4 +1,13 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+  Query,
+} from '@nestjs/common';
 import { IdolsService } from './idols.service';
 import { CreateIdolDto } from './dto/create-idol.dto';
 import { UpdateIdolDto } from './dto/update-idol.dto';
@@ -13,8 +22,8 @@ export class IdolsController {
   }
 
   @Get()
-  findAll() {
-    return this.idolsService.findAll();
+  findAll(@Query('page') page = 1) {
+    return this.idolsService.findAll(+page);
   }
 
   @Get(':id')
